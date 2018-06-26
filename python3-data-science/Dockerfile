@@ -38,8 +38,7 @@ RUN conda install --quiet --yes nodejs && \
     'protobuf=3.*' \
     'xlrd=1.1*'  \
     'xarray=0.10*'  && \
-    jupyter labextension install @jupyterlab/plotly-extension jupyterlab_bokeh && \
-    jupyter labextension install jupyterlab_bokeh && \
+    jupyter labextension install @jupyterlab/plotly-extension && \
     conda remove --quiet --yes --force qt pyqt && \
     conda clean -tipsy && \
     npm cache --force clean && \

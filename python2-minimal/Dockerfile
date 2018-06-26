@@ -35,21 +35,24 @@ ENV PATH=$CONDA_DIR/bin:$PATH \
     JUPYTER_RUNTIME_DIR=$GIGANTUM_SHARE/jupyter/runtime
 
 # Install conda and python
-RUN cd /tmp && wget --quiet https://repo.continuum.io/miniconda/Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh && \
-    echo "da2dd466d26e33a2b1f72fdb853a8ff0 *Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
-    /bin/bash Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
-    rm Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+RUN cd /tmp && wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+    echo "7fe70b214bee1143e3e3f0467b71453c *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
+    /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
+    rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     conda config --system --prepend channels conda-forge && \
     conda config --system --set auto_update_conda false && \
     conda config --system --set show_channel_urls true && \
-    conda update --all --quiet --yes 
+    conda update --all --quiet --yes
 
 # Install and configure JupyterLab
 RUN conda install --quiet --yes -c conda-forge \
     'jupyterlab=0.31.*' \
-    'notebook=5.3.*' && \
+    'notebook=5.3.*' && \ 
+    conda create -n ipykernel_py2 python=2 ipykernel && \
+    . activate ipykernel_py2 && \ 
+    python -m ipykernel install && \
     conda clean -tipsy && \
-    rm -rf $CONDA_DIR/share/jupyter/lab/staging
+    rm -rf $CONDA_DIR/share/jupyter/lab/staging \ 
 EXPOSE 8888
 
 # Set working dir
