@@ -49,8 +49,7 @@ RUN conda install --quiet --yes -c conda-forge \
     'jupyterlab=0.31.*' \
     'notebook=5.3.*' && \ 
     conda create -n ipykernel_py2 python=2 ipykernel && \
-    . activate ipykernel_py2 && \ 
-    python -m ipykernel install && \
+    /opt/conda/envs/ipykernel_py2/bin/python -m ipykernel install && \
     conda clean -tipsy && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging \ 
 EXPOSE 8888
