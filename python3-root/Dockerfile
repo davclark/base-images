@@ -51,9 +51,9 @@ RUN apt-get update && \
     locales \
     lsb-release \
     make \
-    python \
-    python-dev \
-    python-numpy-dev \
+    python3 \
+    python3-dev \
+    python3-numpy-dev \
     srm-ifce-dev \
     sudo \
     uuid-dev && \
