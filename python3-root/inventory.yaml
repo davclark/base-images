@@ -1,0 +1,48 @@
+id: "python3-root"
+name: "CERN Root with Python3"
+description: "A Base containing Python 3.6, CERN Root, and JupyterLab."
+development_env:
+  - jupyerlab
+packages:
+  - apt:
+   - dcap-dev
+   - g++
+   - gcc
+   - gfal2
+   - gfortran
+   - git
+   - graphviz-dev
+   - libavahi-compat-libdnssd-dev
+   - libcfitsio-dev
+   - libfftw3-dev
+   - libftgl-dev
+   - libgfal2-dev
+   - libgif-dev
+   - libgl2ps-dev
+   - libglew-dev
+   - libgsl0-dev
+   - libjemalloc-dev
+   - libjpeg-dev
+   - libkrb5-dev
+   - libldap2-dev
+   - libmysqlclient-dev
+   - liboce-ocaf-dev
+   - liboce-visualization-dev
+   - libodbc1
+   - libpcre++-dev
+   - libpq-dev
+   - libpythia8-dev
+   - libqt4-dev
+   - libsqlite3-dev
+   - libtbb-dev
+   - libtiff-dev
+   - libx11-dev
+   - libxext-dev
+   - libxft-dev
+   - libxml2-dev
+   - libxpm-dev
+   - locales
+   - lsb-release
+   - srm-ifce-dev
+  - pip:
+  - conda3:
