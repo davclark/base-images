@@ -60,6 +60,4 @@ RUN apt-get update && \
     apt-get clean 
 
 ADD root.ubu18.gig.minimal.tar.gz /opt
-#RUN git clone https://github.com/randalburns/cernroot.ubu18.git && cd cernroot.ubu18 && git lfs pull && \
-#    tar -xvzf root_v6.14.00.Linux-ubuntu18-x86_64-gcc7.3.tar.gz -C /usr/local && cd .. && rm -rf cernroot.ubu18
 
