@@ -54,6 +54,15 @@ RUN conda install --quiet --yes -c conda-forge \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging \ 
 EXPOSE 8888
 
+# make pip2 and conda2 address the py2 virtualenv ipykernel_py2
+# remove python3 kernel.  rename pip and conda to pip3 and conda3.  
+RUN jupyter kernelspec remove -f python3 && \
+    mv /opt/conda/bin/pip /opt/conda/bin/pip3 && \
+    mv /opt/conda/bin/conda /opt/conda/bin/conda3 && \
+    ln /opt/conda/envs/ipykernel_py2/bin/pip /opt/conda/bin/pip 
+COPY conda2script.bash /opt/conda/bin/conda
+RUN chmod a+rx /opt/conda/bin/conda
+
 # Set working dir
 WORKDIR $GIGANTUM_WORKDIR
 
