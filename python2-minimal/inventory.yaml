@@ -1,9 +1,11 @@
 id: "python2-minimal"
 name: "Python2 Minimal"
-description: "A minimal Base containing Python 2.7 and JupyterLab with no additional packages"
+description: "A minimal Base containing JupyterLab with Python 2.7 and Python 3.6 kernels and no packages"
 development_env:
   - jupyerlab
 packages:
   - apt:
-  - pip:
+  - pip2:
   - conda2:
+  - pip:
+  - conda:

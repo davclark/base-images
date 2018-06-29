@@ -14,6 +14,9 @@ RUN apt-get update && \
     wget \
     bzip2 \
     ca-certificates \
+    gcc \
+    g++ \
+    make \
     sudo \
     locales \
     fonts-liberation \
@@ -35,19 +38,35 @@ ENV PATH=$CONDA_DIR/bin:$PATH \
     JUPYTER_RUNTIME_DIR=$GIGANTUM_SHARE/jupyter/runtime
 
 # Install conda and python
-RUN cd /tmp && wget --quiet https://repo.continuum.io/miniconda/Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh && \
-    echo "332aeff0bb6b45bbf7e220dec17ba867 *Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
-    /bin/bash Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
-    rm Miniconda2-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+RUN cd /tmp && wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
+    echo "7fe70b214bee1143e3e3f0467b71453c *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
+    /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
+    rm Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     conda config --system --prepend channels conda-forge && \
     conda config --system --set auto_update_conda false && \
     conda config --system --set show_channel_urls true && \
-    conda update --all --quiet --yes && \
-    conda install --quiet --yes -c conda-forge 'jupyterlab=0.32.*' 'notebook=5.5.*' && \
-    conda clean --all
+    conda update --all --quiet --yes
 
-# Expose port for jupyterlab
+# Install and configure JupyterLab
+RUN conda install --quiet --yes -c conda-forge \
+    'jupyterlab=0.31.*' \
+    'notebook=5.3.*' && \ 
+    conda create -n ipykernel_py2 python=2 ipykernel && \
+    /opt/conda/envs/ipykernel_py2/bin/python -m ipykernel install && \
+    conda clean -tipsy && \
+    rm -rf $CONDA_DIR/share/jupyter/lab/staging \ 
 EXPOSE 8888
+
+# make pip2 and conda2 address the py2 virtualenv ipykernel_py2
+# remove python3 kernel.  rename pip and conda to pip3 and conda3.  
+# add a white list in giguser to suppress the python3 kernel.
+RUN mv /opt/conda/bin/pip /opt/conda/bin/pip3 && \
+    mv /opt/conda/bin/conda /opt/conda/bin/conda3 && \
+    ln /opt/conda/envs/ipykernel_py2/bin/pip /opt/conda/bin/pip && \
+    echo "c.KernelSpecManager.whitelist = {'python2'}" > /opt/conda/etc/jupyter/jupyter_notebook_config.py && \
+    chmod 0644 /opt/conda/etc/jupyter/jupyter_notebook_config.py
+COPY conda2script.bash /opt/conda/bin/conda
+RUN chmod a+rx /opt/conda/bin/conda
 
 # Set working dir
 WORKDIR $GIGANTUM_WORKDIR

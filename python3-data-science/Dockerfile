@@ -38,6 +38,10 @@ RUN conda install --quiet --yes nodejs && \
     'protobuf=3.*' \
     'xlrd=1.1*'  \
     'xarray=0.10*'  && \
+<<<<<<< HEAD
+=======
+    jupyter labextension install @jupyterlab/plotly-extension && \
+>>>>>>> py2kernel
     conda remove --quiet --yes --force qt pyqt && \
     conda clean --all && \
     # Activate ipywidgets for notebook server just in case
