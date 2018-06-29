@@ -5,7 +5,7 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 LABEL maintainer="Gigantum <hello@gigantum.io>"
 
 # Install system level dependencies
