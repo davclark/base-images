@@ -14,6 +14,9 @@ RUN apt-get update && apt-get -yq dist-upgrade && \
     wget \
     bzip2 \
     ca-certificates \
+    gcc \
+    g++ \
+    make \
     sudo \
     locales \
     fonts-liberation \
@@ -56,10 +59,12 @@ EXPOSE 8888
 
 # make pip2 and conda2 address the py2 virtualenv ipykernel_py2
 # remove python3 kernel.  rename pip and conda to pip3 and conda3.  
-RUN jupyter kernelspec remove -f python3 && \
-    mv /opt/conda/bin/pip /opt/conda/bin/pip3 && \
+# add a white list in giguser to suppress the python3 kernel.
+RUN mv /opt/conda/bin/pip /opt/conda/bin/pip3 && \
     mv /opt/conda/bin/conda /opt/conda/bin/conda3 && \
-    ln /opt/conda/envs/ipykernel_py2/bin/pip /opt/conda/bin/pip 
+    ln /opt/conda/envs/ipykernel_py2/bin/pip /opt/conda/bin/pip && \
+    echo "c.KernelSpecManager.whitelist = {'python2'}" > /opt/conda/etc/jupyter/jupyter_notebook_config.py && \
+    chmod 0644 /opt/conda/etc/jupyter/jupyter_notebook_config.py
 COPY conda2script.bash /opt/conda/bin/conda
 RUN chmod a+rx /opt/conda/bin/conda
 
