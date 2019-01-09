@@ -1,4 +1,4 @@
-id: "CCopenmp"
+id: "cppopenmp"
 name: "C++ in Jupyter"
 description: "A minimal base with Xeus Cling C++ and OpenMP in JupyterLab"
 readme: "A minimal base with Xeus Cling C++ and OpenMP in JupyterLab"
@@ -12,8 +12,8 @@ url: null
 image:
   server: hub.docker.com
   namespace: gigantum
-  repository: c++-openmp
-  tag: 2c82cb31b6-2019-01-09
+  repository: cppopenmp
+  tag: 3ac5d92825-2019-01-09
 languages:
   - python3
 development_tools:
