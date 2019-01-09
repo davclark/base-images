@@ -4,7 +4,7 @@ description: "A minimal base with Xeus Cling C++ and OpenMP in JupyterLab"
 readme: "A minimal base with Xeus Cling C++ and OpenMP in JupyterLab"
 revision: 1
 schema: 1
-tags: ['ubuntu', 'C++', 'jupyterlab']
+tags: ['ubuntu', 'python3', 'C++', 'jupyterlab']
 os_class: ubuntu
 os_release: "18.04"
 license: MIT
