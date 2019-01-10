@@ -61,9 +61,9 @@ WORKDIR $GIGANTUM_WORKDIR
 RUN conda install xeus-cling notebook -c QuantStack -c conda-forge
 
 # enable openmp
-RUN sed -i 's/"-std=c++11"/"-foo=c++11"\,\n\t"-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp11/kernel.json
-RUN sed -i 's/"-std=c++14"/"-foo=c++14"\,\n\t"-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp14/kernel.json
-RUN sed -i 's/"-std=c++17"/"-foo=c++17"\,\n\t"-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp17/kernel.json
+RUN sed -i 's/"-std=c++11"/"-std=c++11"\,\n      "-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp11/kernel.json
+RUN sed -i 's/"-std=c++14"/"-std=c++14"\,\n      "-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp14/kernel.json
+RUN sed -i 's/"-std=c++17"/"-std=c++17"\,\n      "-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp17/kernel.json
 
 # CMD may be updated during final image assembly, but this keeps a container alive.
 CMD ["tail -f /dev/null"]

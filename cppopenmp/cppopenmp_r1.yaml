@@ -13,7 +13,7 @@ image:
   server: hub.docker.com
   namespace: gigantum
   repository: cppopenmp
-  tag: 3ac5d92825-2019-01-09
+  tag: e84f55a927-2019-01-10
 languages:
   - python3
 development_tools:
