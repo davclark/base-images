@@ -19,6 +19,7 @@ RUN apt-get update && \
     g++ \
     make \
     locales \
+    libomp-dev \
     fonts-liberation \
     gosu \
     tzdata \
@@ -58,7 +59,7 @@ EXPOSE 8888
 WORKDIR $GIGANTUM_WORKDIR
 
 # add C++ support
-RUN conda install xeus-cling notebook -c QuantStack -c conda-forge
+RUN conda install xeus-cling notebook openmp -c QuantStack -c conda-forge
 
 # enable openmp
 RUN sed -i 's/"-std=c++11"/"-std=c++11"\,\n      "-fopenmp"/' /opt/conda/share/jupyter/kernels/xeus-cling-cpp11/kernel.json
