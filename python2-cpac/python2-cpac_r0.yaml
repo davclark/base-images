@@ -8,7 +8,7 @@ image:
   namespace: randalburns
   repository: python2-cpac
   server: hub.docker.com
-  tag: b5fd4234f8-2019-05-29
+  tag: bd7c85f9ee-2019-05-30
 languages:
 - python2
 license: MIT

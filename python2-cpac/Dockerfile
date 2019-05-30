@@ -201,11 +201,6 @@ RUN libs_path=/usr/lib/x86_64-linux-gnu && \
 # set up AFNI
 ENV PATH=/opt/afni:$PATH
 
-## RB add libpng12-0
-#RUN echo 'deb http://security.ubuntu.com/ubuntu xenial-security main' >>  /etc/apt/sources.list \
-#    apt-get update  && \  
-#    apt-get install -y --no-install-recommends libpng12-0
-
 # install FSL
 RUN apt-get update  && \
     apt-get install -y --no-install-recommends \
@@ -245,13 +240,14 @@ RUN curl -sL https://github.com/rhr-pruim/ICA-AROMA/archive/v0.4.3-beta.tar.gz |
 RUN chmod +x /opt/ICA-AROMA/ICA_AROMA.py
 ENV PATH=/opt/ICA-AROMA:$PATH
 
-# install miniconda
-RUN curl -sO https://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh && \
-    bash Miniconda-3.8.3-Linux-x86_64.sh -b -p /usr/local/miniconda && \
-    rm Miniconda-3.8.3-Linux-x86_64.sh
-
-# update path to include conda
-ENV PATH=/usr/local/miniconda/bin:$PATH
+# RB alread have conda
+## install miniconda
+#RUN curl -sO https://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh && \
+#    bash Miniconda-3.8.3-Linux-x86_64.sh -b -p /usr/local/miniconda && \
+#    rm Miniconda-3.8.3-Linux-x86_64.sh
+#
+## update path to include conda
+#ENV PATH=/usr/local/miniconda/bin:$PATH
 
 # install blas dependency first
 RUN conda install -y \
