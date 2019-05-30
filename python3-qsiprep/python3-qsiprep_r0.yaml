@@ -12,16 +12,15 @@ image:
 languages:
 - python3
 license: MIT
-name: Python3 Minimal
+name: Python3 QSIPrep
 os_class: ubuntu
-os_release: '18.04'
+os_release: '16.04'
 package_managers:
 - pip: null
 - conda3: null
 - apt: null
-readme: "A minimal Base containing Python 3.7 and JupyterLab with QSIPrep \n\
-  \nThe following JupyterLab widgets are configured:\n\n- @jupyterlab/toc\n- @jupyterlab/statusbar\n- @jupyter-widgets/jupyterlab-manager\n"
-revision: 7
+readme: "A minimal Base containing Python 3.7 and JupyterLab with QSIPrep"
+revision: 0
 schema: 1
 tags:
 - ubuntu

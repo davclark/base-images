@@ -20,7 +20,7 @@ package_managers:
 - conda3: null
 - apt: null
 readme: "A Base for CPAC\n"
-revision: 7
+revision: 0
 schema: 1
 tags:
 - ubuntu
